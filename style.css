@@ -57,8 +57,20 @@ h1{
 }
 
 label{ display:block; margin:12px 0 6px; font-weight:600; }
-.stars{ display:flex; gap:10px; flex-wrap:wrap; }
-.stars label{ font-weight:500; }
+/* 星評価の配置を縦方向に変更 */
+.stars {
+  display: flex;
+  flex-direction: column;  /* ← これで縦並び */
+  gap: 8px;                /* 星ラベルの間隔 */
+  margin: 8px 0;
+}
+
+.stars label {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
 
 /* ========= Inputs ========= */
 textarea{
