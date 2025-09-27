@@ -1,0 +1,141 @@
+/* ========= Theme (edit here) ========= */
+:root{
+  /* Base (背景/カード) */
+  --bg: #f8f4ef;          /* ほんのりベージュの背景 */
+  --card: #fffaf3;        /* さらに温かい白（カード） */
+  --card-border: #eddcc5; /* カードの境界線（淡いベージュ） */
+
+  /* Text */
+  --text: #3e3a37;        /* やわらかい濃茶系の本文色 */
+  --muted: #7b6f67;       /* 補助テキスト */
+
+  /* Accent (ボタン/見出し) */
+  --accent: #c9653b;      /* テラコッタ（主ボタン・見出し） */
+  --accent-ink: #ffffff;  /* アクセント上の文字色 */
+
+  /* Secondary (サブボタン/枠) */
+  --sec-bg: #fff2e2;      /* 薄いアプリコット */
+  --sec-ink: #6a3b2b;     /* 焦茶寄り */
+  --sec-border: #f0d1b6;  /* 薄めの枠色 */
+
+  /* Focus ring（アクセシビリティ） */
+  --focus: #a84d2c;
+
+  /* Preview box */
+  --preview-bg: #fcf6ee;
+  --preview-border: #ead6bc;
+}
+
+/* ========= Base ========= */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main{ max-width: 720px; margin: 24px auto; padding: 0 16px; }
+h1{
+  margin: 8px 0 16px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+/* ========= Card ========= */
+.card{
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 16px 0;
+  box-shadow: 0 2px 10px rgba(90,65,40,.06);
+}
+
+label{ display:block; margin:12px 0 6px; font-weight:600; }
+.stars{ display:flex; gap:10px; flex-wrap:wrap; }
+.stars label{ font-weight:500; }
+
+/* ========= Inputs ========= */
+textarea{
+  width: 100%;
+  min-height: 120px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background: #fffdf8;
+  color: var(--text);
+}
+textarea:focus{
+  outline: 3px solid color-mix(in oklab, var(--focus) 35%, white);
+  border-color: var(--focus);
+}
+
+/* ========= Buttons ========= */
+button, .primary, .secondary{
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform .02s ease, filter .15s ease, background .15s ease, border-color .15s ease;
+}
+
+.primary{
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 2px 8px rgba(168,77,44,.18);
+}
+.primary:hover{ filter: brightness(1.03); }
+.primary:active{ transform: translateY(1px); }
+.primary:focus-visible{
+  outline: 3px solid color-mix(in oklab, var(--focus) 40%, white);
+  outline-offset: 2px;
+}
+
+.secondary{
+  background: var(--sec-bg);
+  color: var(--sec-ink);
+  border-color: var(--sec-border);
+}
+.secondary:hover{ filter: brightness(0.98); }
+.secondary:active{ transform: translateY(1px); }
+.secondary:focus-visible{
+  outline: 3px solid color-mix(in oklab, var(--focus) 35%, white);
+  outline-offset: 2px;
+}
+
+/* ========= Layout helpers ========= */
+.actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+.preview{
+  white-space: pre-wrap;
+  background: var(--preview-bg);
+  border: 1px dashed var(--preview-border);
+  padding: 10px;
+  border-radius: 10px;
+}
+.note{ color: var(--muted); font-size: 14px; }
+
+/* ========= Media (print) ========= */
+@page{ size: A4; margin: 15mm; }
+@media print{
+  body { font-size: 12pt; background: #fff; }
+  /* 画面用UIを隠したい場合は .no-print をつけておくと便利 */
+  .no-print, h1, .stars input { display: none !important; }
+  #result, #patientInfo, .card{
+    display: block !important;
+    border: 1px solid #c7b6a0;
+    background: #fffdf7;
+    padding: 12mm;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+}
